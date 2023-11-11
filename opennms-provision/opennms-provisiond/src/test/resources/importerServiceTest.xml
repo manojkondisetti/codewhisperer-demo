@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+">
+  
+  <bean id="importResource" class="org.springframework.core.io.ClassPathResource">
+    <constructor-arg><value>/tec_dump.xml.smalltest</value></constructor-arg>
+  </bean>
+
+  <bean id="importThreads" class="java.lang.Integer">
+    <constructor-arg><value>1</value></constructor-arg>
+  </bean>
+  
+  <bean id="scanThreads" class="java.lang.Integer">
+    <constructor-arg><value>1</value></constructor-arg>
+  </bean>
+  
+  <bean id="rescanThreads" class="java.lang.Integer">
+    <constructor-arg><value>1</value></constructor-arg>
+  </bean>
+  
+  <bean id="writeThreads" class="java.lang.Integer">
+    <constructor-arg><value>1</value></constructor-arg>
+  </bean>
+  
+  <bean id="cronExpression" class="java.lang.String">
+    <constructor-arg><value>0 15 10 * * ? 2020</value></constructor-arg>
+  </bean>
+
+  <bean id="importExecutor" class="org.opennms.core.concurrent.PausibleScheduledThreadPoolExecutor">
+    <constructor-arg ref="importThreads" />
+  </bean>
+  
+  <bean id="scanExecutor" class="org.opennms.core.concurrent.PausibleScheduledThreadPoolExecutor">
+    <constructor-arg ref="scanThreads" />
+  </bean>
+  
+  <bean id="writeExecutor" class="org.opennms.core.concurrent.PausibleScheduledThreadPoolExecutor">
+    <constructor-arg ref="writeThreads" />
+  </bean>
+  
+  <bean class="org.opennms.netmgt.provision.service.MockServiceDetector" />
+
+  <bean id="discoveryFactory" class="org.opennms.netmgt.provision.persist.MockDiscoveryConfigurationFactory" />
+
+  <util:map id="configFileMap" map-class="java.util.HashMap" key-type="java.lang.String" value-type="java.lang.String">
+      <entry key="provisiond" value="importerServiceTest-provisiond-configuration.xml"/>
+  </util:map>
+
+  <bean name="configurationManagerService" class="org.opennms.netmgt.dao.mock.ConfigurationManagerServiceMock">
+    <property name="configFileMap" ref="configFileMap"/>
+  </bean>
+</beans>

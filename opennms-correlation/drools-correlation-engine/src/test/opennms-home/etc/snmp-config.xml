@@ -1,0 +1,11 @@
+<?xml version="1.0"?> 
+<snmp-config port="161" retry="0" timeout="2000" 
+             read-community="public"
+             version="v1" >
+             
+    <definition proxy-host="127.0.0.1" port="1691">
+      <specific>192.0.2.201</specific>
+      <specific>192.0.2.204</specific>
+    </definition>
+             
+</snmp-config> 

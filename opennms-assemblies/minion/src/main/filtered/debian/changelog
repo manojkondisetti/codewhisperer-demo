@@ -1,0 +1,556 @@
+opennms-minion (31.0.8-1) stable; urgency=medium
+
+  * Minor release containing several small bug fixes and enhancements.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.8/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 09 May 2023 12:05:56 -0400
+
+opennms-minion (31.0.7-1) stable; urgency=medium
+
+  * Minor release containing several small bug fixes.
+    Most notably, it upgrades the OpenNMS Plugin API host to version 1.4.0,
+    enabling OPA plugins targeting that version to load successfully.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.7/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Fri, 21 Apr 2023 08:43:12 -0400
+
+opennms-minion (31.0.6-1) stable; urgency=medium
+
+  * Minor release which fixes several bugs, including several security
+    vulnerabilities, and upgrades the embedded Drools library in the core
+    from v7 to v8.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.6/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 11 Apr 2023 17:19:53 -0400
+
+opennms-minion (31.0.5-1) stable; urgency=medium
+
+  * Minor release which fixes several bugs, incorporates several documentation
+    improvements, upgrades a couple of library dependencies, improves how
+    plugins are included in the container images, and adds one small enhancement
+    to the web UI.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.5/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Mar 2023 13:32:55 -0500
+
+opennms-minion (31.0.4-1) stable; urgency=medium
+
+  * Minor release which  brings a handful of containerization improvements,
+    fixes several security vulnerabilities, upgrades many potentially
+    vulnerable dependency libraries, fixes one bug in the BSM daemon, and
+    fixes many non-security bugs.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.4/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Feb 2023 16:23:03 -0500
+
+opennms-minion (31.0.3-1) stable; urgency=medium
+
+  * Minor release which fixes a number of UI and backend bugs, brings one
+    small UI enhancement, patches two potential security vulnerabilities, and
+    formalizes support for RHEL 9 and PostgreSQL 15.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.3/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 10 Jan 2023 16:28:00 -0400
+
+opennms-minion (31.0.2-1) stable; urgency=medium
+
+  * New minor release. It fixes a great many bugs and security
+    vulnerabilities, updates the versions of many library dependencies, and
+    introduces some enhancements related to Minion Appliances. The official
+    documentation has also received significant improvements.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.2/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 13 Dec 2022 16:52:00 -0400
+
+opennms-minion (31.0.1-1) stable; urgency=medium
+
+  * New minor release. It contains a few small changes including a fix for
+    unusually large docker images and some other small bug fixes, as well as
+    some updates to the new Quick Start Guide and a fix to the installation
+    instructions for the Cortex plugin.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.1/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Wed, 16 Nov 2022 09:39:00 -0400
+
+opennms-minion (31.0.0-1) stable; urgency=low
+
+  * New major release. It contains several new features, including the Cloud
+    Services Connector with Time Series DB support and a new quick-start
+    guide. Notable enhancements include integration of the Horizon 30 UI Preview
+    items into the main UI and performance improvements to network topology
+    discovery. It also includes an important bug fix correcting a regression that
+    rendered Horizon 30 unable to run in OpenShift environments, besides many
+    other important bug and security fixes.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/31.0.0/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 08 Nov 2022 14:27:00 -0400
+
+opennms-minion (30.0.4-1) stable; urgency=low
+
+  * New minor release. It contains quite a few bug and security fixes and 
+    a number of enhancements.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/30.0.4/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 11 Oct 2022 11:46:00 -0400
+
+opennms-minion (30.0.3-1) stable; urgency=low
+
+  * New minor release. It contains quite a few bug fixes as well as number of 
+    small features and security fixes.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/30.0.3/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Fri, 09 Sep 2022 15:22:00 -0400
+
+opennms-minion (30.0.2-1) stable; urgency=low
+
+  * New minor release. contains quite a few bug fixes as well as number of small features. 
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/30.0.2/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 09 Aug 2022 11:13:00 -0400
+
+opennms-minion (30.0.1-1) stable; urgency=low
+
+  * New minor release. a number of bug fixes as well as a number of new features 
+    including support for encrypting credentials.
+
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/30.0.1/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 12 Jul 2022 11:55:00 -0400
+
+opennms-minion (30.0.0-1) stable; urgency=low
+
+  * New major release. It contains a number of new features, most notably a
+    preview of a new web UI, and the ability to back up infrastructure device
+    configs.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/30.0.0/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Jun 2022 14:12:00 -0400
+ 
+opennms-minion (29.0.10-1) stable; urgency=medium
+
+  * New minor release. It contains a number of security dependency
+    updates, plus a bunch of other bug fixes and documentation improvements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.10/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 10 May 2022 16:53:00 -0400
+ 
+opennms-minion (29.0.9-1) stable; urgency=medium
+
+  * New minor release. It contains a bunch of bug fixes and enhancements,
+    including improvements for running in containers, code cleanups, and
+    improved documentation.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.9/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 12 Apr 2022 11:25:00 -0400
+ 
+opennms-minion (29.0.8-1) stable; urgency=medium
+
+  * New minor release. It contains a few small bug fixes mostly relating
+    to upgrades, as well as a bug in graphing, and an improvement to
+    support pre-auth HTTP headers.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.8/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Thu, 24 Mar 2022 11:42:00 -0400
+ 
+opennms-minion (29.0.7-1) stable; urgency=medium
+
+  * New minor release. It contains a bunch of bug and security fixes,
+    plus a few small enhancements and documentation improvements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.7/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Wed, 16 Mar 2022 13:40:00 -0400
+ 
+opennms-minion (29.0.6-1) stable; urgency=medium
+
+  * New minor release. It contains a number of bug fixes, including
+    security fixes related to Grafana PDF reports and Protobuf, as well
+    as a few enhancements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.6/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 08 Feb 2022 13:40:00 -0400
+ 
+opennms-minion (29.0.5-1) stable; urgency=low
+
+  * New minor release. It contains a number of bug and security fixes,
+    as well as a few enhancements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.5/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 11 Jan 2022 12:07:00 -0400
+ 
+opennms-minion (29.0.4-1) stable; urgency=high
+
+  * New minor release. It is a re-release of 29.0.3 with additional fixes
+    relating to Log4j2 vulnerabilities.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.4/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Wed, 15 Dec 2021 19:03:00 -0400
+ 
+opennms-minion (29.0.3-1) stable; urgency=high
+
+  * New minor release. It is an out-of-band release with a fix for the
+    Log4j2 security issue, plus an enhancement to support `exclude-url`
+    in discovery's configuration.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.3/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Mon, 13 Dec 2021 10:07:00 -0400
+ 
+opennms-minion (29.0.2-1) stable; urgency=high
+
+  * New minor release. It contains a fix for a Jetty CVE, plus a number of bug
+    fixes and small enhancements, including changes to user auth, Twin API,
+    VMware, and running as non-root.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.2/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Dec 2021 12:41:00 -0400
+ 
+opennms-minion (29.0.1-1) stable; urgency=high
+
+  * New minor release. It addresses some bugs found in 29.0.0 mostly related
+    to running as non-root, and Minion communication.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.1/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Fri, 19 Nov 2021 10:26:00 -0400
+ 
+opennms-minion (29.0.0-1) stable; urgency=medium
+
+  * New major release. It contains a number of updates including
+    introducing running as non-root by default, optimizations to Minion
+    communication, time-series improvements, support for Cortex for
+    storing flow data, and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/29.0.0/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Wed, 10 Nov 2021 09:12:00 -0400
+ 
+opennms-minion (28.1.1-1) stable; urgency=low
+
+  * New minor release. It contains a number of bug fixes and enhancements,
+    including web UI, Minion, Docker, and documentation improvements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/28.1.1/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 12 Oct 2021 12:07:00 -0400
+ 
+opennms-minion (28.1.0-1) stable; urgency=medium
+
+  * New minor release. It contains a bunch of bug fixes and enhancements,
+    including a dependency update related to a CVE.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/28.1.0/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Sep 2021 15:12:00 -0400
+ 
+opennms-minion (28.0.2-1) stable; urgency=high
+
+  * New minor release. It contains a bunch of bug fixes and enhancements, as
+    well as some fixes for XSS issues and a Jetty CVE.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/28.0.2/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 10 Aug 2021 13:11:00 -0400
+ 
+opennms-minion (28.0.1-1) stable; urgency=high
+
+  * New minor release. It contains a bunch of bug fixes and enhancements, plus a
+    few security updates.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/28.0.1/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 13 Jul 2021 12:35:00 -0400
+ 
+opennms-minion (28.0.0-1) stable; urgency=low
+
+  * New major release. It contains a refresh of the look-and-feel,
+    enhancements to flows, the minion, and documentation, and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.com/horizon/28.0.0/index.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 01 Jun 2021 12:12:00 -0400
+ 
+opennms-minion (27.2.0-1) stable; urgency=high
+
+  * New minor release.  It contains mostly bug fixes including a number of
+    security updates.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.2.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 11 May 2021 10:50:00 -0400
+ 
+opennms-minion (27.1.1-1) stable; urgency=high
+
+  * New minor release.  It contains a few enhancements, as well as a number of
+    bug fixes including some XSS and CSRF cleanups and a Jetty DoS CVE.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.1.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 06 Apr 2021 12:09:00 -0400
+ 
+opennms-minion (27.1.0-1) stable; urgency=medium
+
+  * New minor release.  It contains a bunch of bug fixes, as well as a number of
+    enhancements including a refactor of our BGP Monitoring Protocol integration.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.1.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 02 Mar 2021 11:42:00 -0400
+ 
+opennms-minion (27.0.5-1) stable; urgency=high
+
+  * New minor release.  It contains just a couple of bug fixes, most importantly a
+    fix to provisioning that could break update to existing nodes when scanning.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.5/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 09 Feb 2021 12:38:00 -0400
+ 
+opennms-minion (27.0.4-1) stable; urgency=high
+
+  * New minor release.  It contains a number of bug fixes relating to WMI, the
+    Minion, flows, reports, JEXL processing, and more, as well as a few small
+    enhancements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.4/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 02 Feb 2021 15:23:00 -0400
+ 
+opennms-minion (27.0.3-1) stable; urgency=low
+
+  * New minor release.  It contains a number of mostly esoteric bug fixes, and a
+    few small enhancements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.3/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 05 Jan 2021 10:44:00 -0400
+ 
+opennms-minion (27.0.2-1) stable; urgency=high
+
+  * New minor release.  It contains a few bug fixes including a critical fix to a
+    regression in 27.0.1 that would keep OpenNMS from starting if you had existing
+    reports in the database.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.2/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 03 Dec 2020 13:52:00 -0400
+ 
+opennms-minion (27.0.1-1) stable; urgency=high
+
+  * New minor release.  It contains a number of bugfixes including a critical CVE
+    fix for Jetty, as well as a number of other smaller changes and improvements.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 01 Dec 2020 12:08:00 -0400
+ 
+opennms-minion (27.0.0-1) stable; urgency=high
+
+  * New major release.  It contains many bug fixes and a ton of new features, most
+    notably the removal of the Remote Poller in favor of a new Minion-based
+    workflow called Application Perspective Monitoring.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/27.0.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 03 Nov 2020 12:23:00 -0400
+ 
+opennms-minion (26.2.2-1) stable; urgency=low
+
+  * New minor release.  It contains a number of bug fixes and enhancements, including
+    doc improvements, time series updates, and a fix for UEI processing.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.2.2/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 06 Oct 2020 12:14:00 -0400
+ 
+opennms-minion (26.2.1-1) stable; urgency=low
+
+  * New minor release.  It contains all of the fixes reportedly in 26.2.0,
+    some of which were missing because of a bugfix branch merge error.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.2.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Thu, 03 Sep 2020 10:51:00 -0400
+
+opennms-minion (26.2.0-1) stable; urgency=low
+
+  * New release.  It contains a bunch of bug fixes and improvements, including
+    adding support for a new telemetry adapter supporting collection from
+    OpenConfig over the gRPC Juniper Telemetry Interface.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.2.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Wed, 02 Sep 2020 10:23:00 -0400
+
+opennms-minion (26.1.3-2) stable; urgency=low
+
+  * New minor release.  It contains a bunch of bug fixes and improvements,
+    including big optimizations to the new time-series layer, some UI fixes,
+    and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.1.3/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 04 Aug 2020 20:14:00 -0400
+
+opennms-minion (26.1.2-1) stable; urgency=medium
+
+  * New enhancement release. It contains a bunch of bug fixes and improvements,
+    including docker container optimizations, Netflow changes, documentation
+    updates, time-series enhancements, and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.1.2/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Jul 2020 12:24:00 -0400
+
+opennms-minion (26.1.1-1) stable; urgency=low
+
+  * New enhancement release. It contains a number of documentation and bug fixes
+    including improvements to Kafka event and alarm publishing.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.1.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 02 Jun 2020 10:44:00 -0400
+
+opennms-minion (26.1.0-1) stable; urgency=medium
+
+  * New enhancement release. It contains a number of bug fixes and improvements,
+    including updates to telemetry, provisioning, and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.1.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 05 May 2020 13:52:00 -0400
+
+opennms-minion (26.0.1-1) stable; urgency=high
+
+  * New minor release. It is an off-schedule release to fix a vulnerability in
+    ActiveMQ and the Minion.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.0.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 28 Apr 2020 13:58:00 -0400
+
+opennms-minion (26.0.0-1) stable; urgency=high
+
+  * New major release.  It contains a large number of bug
+    fixes and new features, most notably initial support for
+    handling the BGP Monitoring Protocol in Telemetryd.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/26.0.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Thu, 09 Apr 2020 11:58:00 -0400
+
+opennms-minion (25.2.1-1) stable; urgency=high
+
+  * New stable release.  It contains a number of small improvements as well as a
+    few bug fixes and a security fix for an HQL injection bug.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/25.2.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 03 Mar 2020 12:14:00 -0400
+
+opennms-minion (25.2.0-1) stable; urgency=low
+
+  * New stable release.  It contains a number of bug fixes including a performance
+    fix for topology updating, and an enhancement to the sink API to persist to
+    disk when the Minion can't reach the broker.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/25.2.0/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 04 Feb 2020 14:24:00 -0400
+
+opennms-minion (25.1.2-1) stable; urgency=medium
+
+  * New stable release.  It contains a number of alarm classification bug fixes
+    and performance improvements, flow enhancements, and more.
+    
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/25.1.2/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 07 Jan 2020 10:00:00 -0400
+
+opennms-minion (25.1.1-1) stable; urgency=medium
+
+  * New stable release.  It contains a number of bug fixes mostly related to alarm
+    and event processing and potential resource leaks, as well as provisioning
+    enhancements to SNMP profiles.
+
+    For details on what has changed, see:
+    https://docs.opennms.org/opennms/releases/25.1.1/releasenotes/releasenotes.html
+
+ -- OpenNMS Release Manager <opennms@opennms.org>  Tue, 03 Dec 2019 10:00:00 -0400
+
+opennms-minion (19.0.0-0) UNRELEASED; urgency=low
+
+  * Initial release.
+
+ -- Benjamin Reed <ranger@opennms.org>  Tue, 18 Apr 2017 12:01:59 -0400

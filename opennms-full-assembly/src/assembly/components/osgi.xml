@@ -1,0 +1,25 @@
+<component
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.2 http://maven.apache.org/xsd/component-1.1.2.xsd"
+>
+  <fileSets>
+    <fileSet>
+      <filtered>false</filtered>
+      <outputDirectory>system</outputDirectory>
+      <directory>target/opennms-repo</directory>
+      <excludes>
+        <exclude>**/*jasypt*/1.9.2_1</exclude>
+        <exclude>**/*jasypt*/1.9.2_1/*</exclude>
+        <exclude>**/jettison/1.3.*</exclude>
+        <exclude>**/jettison/1.3.*/*</exclude>
+        <exclude>**/proton-j/0.14.0</exclude>
+        <exclude>**/proton-j/0.14.0/*</exclude>
+        <exclude>**/scala-library/2.11.0</exclude>
+        <exclude>**/scala-library/2.11.0/*</exclude>
+        <exclude>**/*xstream*/1.4.8_1</exclude>
+        <exclude>**/*xstream*/1.4.8_1/*</exclude>
+      </excludes>
+    </fileSet>
+  </fileSets>
+</component>

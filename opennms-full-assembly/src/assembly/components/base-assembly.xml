@@ -1,0 +1,104 @@
+<component
+    xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/component/1.1.2 http://maven.apache.org/xsd/component-1.1.2.xsd"
+>
+  <dependencySets>
+    <dependencySet>
+      <unpack>true</unpack>
+      <useProjectArtifact>false</useProjectArtifact>
+      <useStrictFiltering>true</useStrictFiltering>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <!-- Output to the root directory -->
+      <outputDirectory></outputDirectory>
+      <includes>
+        <include>org.opennms:opennms-base-assembly:tar.gz:daemon:${project.version}</include>
+      </includes>
+      <unpackOptions>
+        <excludes>
+          <!-- contrib -->
+          <exclude>contrib/**/*</exclude>
+
+          <!-- northbounders -->
+          <exclude>lib/*alarm-northbounder-jms*</exclude>
+
+          <!-- protocols -->
+          <exclude>etc/nsclient-config.xml</exclude>
+
+          <!-- provisioning adapters -->
+          <exclude>etc/*snmp-asset-adapter*</exclude>
+          <exclude>lib/*snmp-asset-provisioning-adapter*</exclude>
+          <exclude>etc/*snmp-hardware-inventory-adapter*</exclude>
+          <!-- not included in base assembly tar -->
+          <!-- <exclude>lib/*snmp-hardware-inventory-provisioning-adapter*</exclude> -->
+          <exclude>etc/*wsman-asset-adapter*</exclude>
+          <!-- not included in base assembly tar -->
+          <!-- <exclude>lib/*wsman-asset-provisioning-adapter*</exclude> -->
+
+          <!-- ticketing plugins -->
+          <exclude>etc/*otrs*</exclude>
+          <exclude>lib/*otrs*</exclude>
+          <exclude>etc/rt.properties</exclude>
+          <exclude>lib/*integration-rt*</exclude>
+        </excludes>
+      </unpackOptions>
+    </dependencySet>
+    <dependencySet>
+      <unpack>true</unpack>
+      <unpackOptions><filtered>true</filtered></unpackOptions>
+      <useProjectArtifact>false</useProjectArtifact>
+      <useStrictFiltering>true</useStrictFiltering>
+      <useTransitiveDependencies>false</useTransitiveDependencies>
+      <outputDirectory>share</outputDirectory>
+      <outputFileNameMapping></outputFileNameMapping>
+      <includes>
+        <include>org.opennms.assemblies:org.opennms.assemblies.xsds:tar.gz:xsds:${project.version}</include>
+      </includes>
+    </dependencySet>
+  </dependencySets>
+  <fileSets>
+    <!-- Copy the Karaf container into our root directory -->
+    <fileSet>
+      <directory>${project.build.directory}/dependency/org.opennms.container.karaf-${project.version}</directory>
+      <filtered>false</filtered>
+      <!-- Output to the root directory -->
+      <outputDirectory></outputDirectory>
+      <!--
+        Exclude Karaf scripts from bin that cannot be invoked
+        on our embedded container
+      -->
+      <excludes>
+        <exclude>bin/*.bat</exclude>
+        <exclude>bin/client</exclude>
+        <exclude>bin/contrib</exclude>
+        <exclude>bin/contrib/*</exclude>
+        <exclude>bin/inc</exclude>
+        <exclude>bin/instance</exclude>
+        <exclude>bin/karaf</exclude>
+        <exclude>bin/setenv</exclude>
+        <exclude>bin/shell</exclude>
+        <exclude>bin/start</exclude>
+        <exclude>bin/status</exclude>
+        <exclude>bin/stop</exclude>
+      </excludes>
+    </fileSet>
+    <!-- Add the third party license list -->
+    <fileSet>
+      <directory>${project.build.directory}/generated-sources/license</directory>
+      <filtered>false</filtered>
+      <outputDirectory>etc</outputDirectory>
+      <includes>
+        <include>THIRD-PARTY.txt</include>
+      </includes>
+    </fileSet>
+    <!-- Put the Karaf 4 boot classpath files into /lib so that they are available in the OpenNMS classpath -->
+    <fileSet>
+      <directory>${project.build.directory}/dependency/org.opennms.container.karaf-${project.version}/lib/boot</directory>
+      <filtered>false</filtered>
+      <outputDirectory>lib</outputDirectory>
+      <includes>
+        <include>*.jar</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+</component>

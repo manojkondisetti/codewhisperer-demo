@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<engine-configuration 
+	xmlns="http://xmlns.opennms.org/xsd/drools-engine" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <rule-set name="dependencyRules">
+    <rule-file>DependencyRules.drl</rule-file>
+    <event>uei.opennms.org/nodes/nodeLostService</event>
+    <event>uei.opennms.org/nodes/nodeRegainedService</event>
+    <app-context>dependencyRules-context.xml</app-context>
+  </rule-set>
+</engine-configuration>

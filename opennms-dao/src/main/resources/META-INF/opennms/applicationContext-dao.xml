@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" 
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:cache="http://www.springframework.org/schema/cache"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:onmsgi="http://xmlns.opennms.org/xsd/spring/onms-osgi"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+       http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+       http://xmlns.opennms.org/xsd/spring/onms-osgi http://xmlns.opennms.org/xsd/spring/onms-osgi.xsd
+       ">
+
+  <!--
+      Small HACK:
+      Originally only applicationContext-dao.xml was required.
+      But with the introduction of sentinel, applicationContext-dao.xml AND applicationContext-shared.xml need to be loaded.
+      Importing the applicationContext-shared.xml file here, did not require us to rewrite all ITs and manually include "applicationContext-shared.xml"
+
+  -->
+  <import resource="applicationContext-shared.xml"/>
+
+  <!-- NOTE: FROM HERE ON, only contains OpenNMS Runtime Environment-specific beans -->
+
+  <context:annotation-config />
+  <cache:annotation-driven />
+  <tx:annotation-driven />
+
+  <bean id="propertyPlaceholderConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+    <property name="systemPropertiesModeName" value="SYSTEM_PROPERTIES_MODE_OVERRIDE" />
+    <!-- 
+      We need to ignore unresolvable placeholders since if multiple PropertyPlaceholderConfigurer
+      preprocessors are in use in a single context (such as inside unit tests), Spring will encounter
+      the issue documented here:
+
+      https://jira.springsource.org/browse/SPR-6428
+
+      TODO: Fix this behavior after upgrading to Spring 3.1.
+    -->
+    <property name="ignoreUnresolvablePlaceholders" value="true"/>
+    <property name="properties">
+      <props>
+        <prop key="importer.foreign-source.dir">${opennms.home}/etc/foreign-sources</prop>
+        <prop key="importer.requisition.dir">${opennms.home}/etc/imports</prop>
+      </props>
+    </property>
+  </bean>
+
+  <bean id="jdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+    <property name="dataSource" ref="dataSource" />
+  </bean>
+
+  <bean id="timeKeeper" class="org.opennms.netmgt.collection.support.DefaultTimeKeeper" />
+
+  <!-- 
+    DataSourceFactory has been changed to return TransactionAwareDataSources so
+    legacy code can participate in transactions properly.
+  -->
+  <bean id="dataSource" class="org.opennms.core.db.DataSourceFactoryBean" />
+  <onmsgi:service interface="javax.sql.DataSource" ref="dataSource"/>
+
+  <!-- Configuration Service & upgrades -->
+  <bean id="upgradeConfigService" class = "org.opennms.config.upgrade.UpgradeConfigService"/>
+  <import resource="classpath*:/META-INF/opennms/applicationContext-config-service.xml"/>
+
+  <!-- Configuration File DAOs -->
+  <bean id="surveillanceViewConfigResourceLocation" class="java.lang.String">
+    <constructor-arg value="file:${opennms.home}/etc/surveillance-views.xml" />
+  </bean>
+
+  <bean id="surveillanceViewConfigDao" class="org.opennms.netmgt.dao.jaxb.DefaultSurveillanceViewConfigDao">
+    <property name="configResource" ref="surveillanceViewConfigResourceLocation" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.SurveillanceViewConfigDao" ref="surveillanceViewConfigDao" />
+  
+  <bean id="databaseReportConfigResourceLocation" class="java.lang.String">
+    <constructor-arg value="file:${opennms.home}/etc/database-reports.xml" />
+  </bean>
+  <bean id="databaseReportConfigDao" class="org.opennms.netmgt.dao.jaxb.DefaultDatabaseReportConfigDao">
+    <property name="configResource" ref="databaseReportConfigResourceLocation" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.DatabaseReportConfigDao" ref="databaseReportConfigDao" />
+  
+  <bean id="availabilityReportConfigResourceLocation" class="java.lang.String">
+    <constructor-arg value="file:${opennms.home}/etc/availability-reports.xml" />
+  </bean>
+  <bean id="availabilityReportConfigDao" class="org.opennms.netmgt.dao.jaxb.DefaultOnmsReportConfigDao">
+    <property name="configResource" ref="availabilityReportConfigResourceLocation" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.OnmsReportConfigDao" ref="availabilityReportConfigDao" />
+
+  <bean id="filterManager" class="org.opennms.netmgt.dao.hibernate.HibernateFilterManager">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.model.FilterManager" ref="filterManager" />
+
+  <bean id="eventdServiceManager" class="org.opennms.netmgt.dao.hibernate.EventdServiceManagerHibernate">
+    <property name="serviceTypeDao" ref="serviceTypeDao"/>
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.EventdServiceManager" ref="eventdServiceManager" />
+
+  <!-- Other Non-Database DAOs -->
+  <!-- The time-series strategy specific context should provide beans that implement:
+            org.opennms.netmgt.collection.api.PersisterFactory
+            org.opennms.netmgt.dao.api.ResourceStorageDao
+            org.opennms.netmgt.rrd.RrdStrategy
+   -->
+  <import resource="classpath*:/META-INF/opennms/applicationContext-timeseries-${org.opennms.timeseries.strategy:rrd}.xml"/>
+  <bean id="resourceDao" class="org.opennms.netmgt.dao.support.DefaultResourceDao">
+    <property name="nodeDao" ref="nodeDao" />
+    <property name="ipInterfaceDao" ref="ipInterfaceDao" />
+    <property name="collectdConfig" ref="collectdConfig" />
+    <property name="resourceTypesDao" ref="resourceTypesDao" />
+    <property name="resourceStorageDao" ref="resourceStorageDao" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.ResourceDao" ref="resourceDao" />
+
+  <bean id="rrdDao" class="org.opennms.netmgt.dao.support.DefaultRrdDao">
+    <property name="rrdStrategy" ref="rrdStrategy" />
+    <property name="rrdBaseDirectory" value="${rrd.base.dir}" />
+    <property name="rrdBinaryPath" value="${rrd.binary}" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.RrdDao" ref="rrdDao" />
+
+  <bean id="statsdConfigResourceLocation" class="java.lang.String">
+    <constructor-arg value="file:${opennms.home}/etc/statsd-configuration.xml" />
+  </bean>
+  <bean id="statsdConfigDao" class="org.opennms.netmgt.dao.jaxb.DefaultStatisticsDaemonConfigDao">
+    <property name="configResource" ref="statsdConfigResourceLocation" />
+    <property name="reloadCheckInterval" value="-1" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.StatisticsDaemonConfigDao" ref="statsdConfigDao" />
+  
+  <bean id="javamailConfigResourceLocation" class="java.lang.String">
+    <constructor-arg value="file:${opennms.home}/etc/javamail-configuration.xml" />
+  </bean>
+  <bean id="javamailConfigDao" class="org.opennms.netmgt.dao.jaxb.DefaultJavamailConfigurationDao">
+    <property name="configResource" ref="javamailConfigResourceLocation" />
+    <property name="reloadCheckInterval" value="-1" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.JavaMailConfigurationDao" ref="javamailConfigDao" />
+
+  <!-- DistPollerDAO should be exposed by each container individually -->
+  <bean id="distPollerDao" class="org.opennms.netmgt.dao.hibernate.DistPollerDaoHibernate">
+    <property name="sessionFactory" ref="sessionFactory" />
+  </bean>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.DistPollerDao" ref="distPollerDao" />
+
+  <!-- PathOutageManagerDaoImpl requires poller-configuration.xml which is not available in distributed containers -->
+  <bean name="pathOutageManager" class="org.opennms.netmgt.dao.hibernate.PathOutageManagerDaoImpl"/>
+  <onmsgi:service interface="org.opennms.netmgt.dao.api.PathOutageManager" ref="pathOutageManager" />
+
+  <!--
+       This is required for the PathOutageManagerDaoImpl in order to get access to the underlying
+       PollerConfiguration/PathOutageConfig and without adding additional dependencies to opennms-config or other modules.
+       Ideally it would live in component-dao.xml, but that is already used by other modules such as bsm, which we require
+       to expose the bsm daos in an OSGI Container, therefore without having to re-define all existing integration tests,
+       it is placed here
+    -->
+  <bean id="pathOutageConfiguration" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean">
+    <property name="targetObject" ref="poller-configuration.xml"/>
+    <property name="targetMethod" value="get"/>
+  </bean>
+  <!--
+    HACK:  This is a duplicate, as the original one is located in opennms-config/META-INF/opennms/component-dao.xml.
+    However, when executing tests, that application context may not be available, therefore we define it here as well.
+  -->
+  <bean name="poller-configuration.xml" class="org.opennms.core.config.impl.JaxbResourceConfiguration">
+    <constructor-arg value="org.opennms.netmgt.config.poller.PollerConfiguration" />
+    <constructor-arg value="file:${opennms.home}/etc/poller-configuration.xml" />
+  </bean>
+</beans>

@@ -1,0 +1,64 @@
+/*******************************************************************************
+ * This file is part of OpenNMS(R).
+ *
+ * Copyright (C) 2009-2014 The OpenNMS Group, Inc.
+ * OpenNMS(R) is Copyright (C) 1999-2014 The OpenNMS Group, Inc.
+ *
+ * OpenNMS(R) is a registered trademark of The OpenNMS Group, Inc.
+ *
+ * OpenNMS(R) is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as published
+ * by the Free Software Foundation, either version 3 of the License,
+ * or (at your option) any later version.
+ *
+ * OpenNMS(R) is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with OpenNMS(R).  If not, see:
+ *      http://www.gnu.org/licenses/
+ *
+ * For more information contact:
+ *     OpenNMS(R) Licensing <license@opennms.org>
+ *     http://www.opennms.org/
+ *     http://www.opennms.com/
+ *******************************************************************************/
+
+package org.opennms.protocols.wmi.test.stubs;
+
+import org.opennms.protocols.wmi.wbem.OnmsWbemProperty;
+import org.opennms.protocols.wmi.WmiException;
+
+public class OnmsWbemPropBiosStub implements OnmsWbemProperty {
+    @Override
+    public String getWmiName() throws WmiException {
+        return "ReleaseDate";
+    }
+
+    @Override
+    public String getWmiOrigin() throws WmiException {
+        return null;
+    }
+
+    @Override
+    public Boolean getWmiIsArray() throws WmiException {
+        return false;
+    }
+
+    @Override
+    public Boolean getWmiIsLocal() throws WmiException {
+        return null;
+    }
+
+    @Override
+    public Object getWmiValue() throws WmiException {
+        return "2/12/2004 00:00:00";
+    }
+
+    @Override
+    public Integer getWmiCIMType() throws WmiException {
+        return null;
+    }
+}

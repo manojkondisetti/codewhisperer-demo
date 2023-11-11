@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="
+  http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+">
+    <bean id="mockNetwork" class="org.opennms.netmgt.mock.MockNetwork" primary="true" />
+
+    <bean id="mockPollerConfig" class="org.opennms.netmgt.mock.MockPollerConfig" primary="true" >
+        <constructor-arg ref="mockNetwork"/>
+    </bean>
+
+    <bean id="serviceMonitorRegistry" class="org.springframework.beans.factory.config.MethodInvokingFactoryBean" primary="true" >
+        <property name="targetObject" ref="mockPollerConfig"/>
+        <property name="targetMethod" value="getServiceMonitorRegistry"/>
+    </bean>
+</beans>

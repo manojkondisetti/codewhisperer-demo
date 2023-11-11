@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <parent>
+    <groupId>org.opennms</groupId>
+    <artifactId>dependencies</artifactId>
+    <version>32.0.0-SNAPSHOT</version>
+  </parent>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>org.opennms.dependencies</groupId>
+  <artifactId>spring-web-dependencies</artifactId>
+  <packaging>pom</packaging>
+  <name>OpenNMS :: Dependencies :: Spring Web</name>
+  <description>
+    This module is used to provide a single artifact that the opennms project
+    can depend on to use the spring library.
+  </description>
+  <!-- springVersion defined in the dependencies pom since its shared in multiple modules -->
+  <dependencies>
+    <!-- Spring -->
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.spring-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.servicemix.bundles</groupId>
+      <artifactId>org.apache.servicemix.bundles.spring-webmvc</artifactId>
+    </dependency>
+    <!-- Spring Dependencies -->
+    <dependency>
+      <groupId>org.opennms.dependencies</groupId>
+      <artifactId>spring-dependencies</artifactId>
+      <type>pom</type>
+    </dependency>
+    <dependency>
+      <groupId>org.hibernate</groupId>
+      <artifactId>hibernate-validator-annotation-processor</artifactId>
+    </dependency>
+    <!-- Other version overrides -->
+    <dependency>
+      <groupId>commons-beanutils</groupId>
+      <artifactId>commons-beanutils</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>commons-validator</groupId>
+      <artifactId>commons-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.slf4j</groupId>
+      <artifactId>jcl-over-slf4j</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>xalan</groupId>
+      <artifactId>xalan</artifactId>
+    </dependency>
+  </dependencies>
+</project>
