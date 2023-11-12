@@ -12,6 +12,7 @@ import software.amazon.awssdk.enhanced.dynamodb.Expression;
 import software.amazon.awssdk.enhanced.dynamodb.Key;
 import software.amazon.awssdk.enhanced.dynamodb.TableSchema;
 import software.amazon.awssdk.enhanced.dynamodb.model.GetItemEnhancedRequest;
+import software.amazon.awssdk.enhanced.dynamodb.model.DeleteItemEnhancedRequest;
 import software.amazon.awssdk.enhanced.dynamodb.model.PutItemEnhancedRequest;
 
 import javax.inject.Inject;
@@ -65,6 +66,25 @@ public class CodeWhispererDB {
 
             CodeWhispererPictureMetadata metadata = table.getItem(request);
             return metadata;
+        } catch (Exception exception) {
+            String message = String.format("Exception occurred while getting metadata for pictureId: %s", pictureId);
+            LOGGER.error(message, exception);
+            throw new CodeWhispererPictureException(message, exception);
+        }
+    }
+
+    /**
+     * Delete the metadata for a given pictureId.
+     */
+    public CodeWhispererPictureMetadata deletePictureMetadata(final String pictureId) {
+        try {
+            final DeleteItemEnhancedRequest request = DeleteItemEnhancedRequest.builder()
+                    .key(Key.builder().partitionValue(pictureId).build())
+                    .build();
+
+            table.deleteItem(request);
+        } catch (ResourceNotFoundException e) {
+            LOGGER.info("Already deleted metadata");
         } catch (Exception exception) {
             String message = String.format("Exception occurred while getting metadata for pictureId: %s", pictureId);
             LOGGER.error(message, exception);

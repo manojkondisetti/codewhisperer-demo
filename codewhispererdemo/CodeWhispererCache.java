@@ -44,6 +44,13 @@ public class CodeWhispererCache<String, CodeWhispererPictureMetadata> {
         return metadata;
     }
 
+    /**
+     * Deletes the metadata from the cache
+     */
+    public synchronized void remove(String pictureId) {
+        cacheMap.remove(pictureId);
+    }
+
     private boolean isExpired(Timestamp timestamp) {
         return timestamp.after(Timestamp.from(Instant.now().plus(EXPIRATION_TIME_IN_SECONDS, ChronoUnit.SECONDS)));
     }

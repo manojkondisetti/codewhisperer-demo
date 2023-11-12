@@ -10,15 +10,15 @@ import software.amazon.awssdk.core.sync.RequestBody;
 import javax.inject.Inject;
 import java.util.Optional;
 
-public class CodeWhispererPictureActivity {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CodeWhispererPictureActivity.class);
+public class CodeWhispererPictureSaveActivity {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CodeWhispererPictureSaveActivity.class);
 
     private final CodeWhispererCache<String, CodeWhispererPictureMetadata> codeWhispererCache;
     private final CodeWhispererDB codeWhispererDB;
     private final CodeWhispererStorage codeWhispererStorage;
 
     @Inject
-    public CodeWhispererPictureActivity(final CodeWhispererCache<String, CodeWhispererPictureMetadata> codeWhispererCache,
+    public CodeWhispererPictureSaveActivity(final CodeWhispererCache<String, CodeWhispererPictureMetadata> codeWhispererCache,
                                         final CodeWhispererDB codeWhispererDB,
                                         final CodeWhispererStorage codeWhispererStorage) {
         this.codeWhispererCache = codeWhispererCache;
