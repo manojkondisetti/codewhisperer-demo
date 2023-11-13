@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import software.amazon.awssdk.core.sync.RequestBody;
 import software.amazon.awssdk.services.s3.S3Client;
+import software.amazon.awssdk.services.s3.model.DeleteObjectRequest;
 import software.amazon.awssdk.services.s3.model.HeadObjectRequest;
 import software.amazon.awssdk.services.s3.model.NoSuchKeyException;
 import software.amazon.awssdk.services.s3.model.PutObjectRequest;
@@ -15,7 +16,7 @@ import java.util.UUID;
 
 public class CodeWhispererStorage {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CodeWhispererPictureActivity.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(CodeWhispererStorage.class);
     private final S3Client s3Client;
     private final String BUCKET_NAME = "CodeWhispererPictures";
 
@@ -55,5 +56,23 @@ public class CodeWhispererStorage {
             throw new CodeWhispererPictureException(message, e);
         }
         return true;
+    }
+
+    public void deletePicture(final String pictureId) {
+        DeleteObjectRequest deleteObjectRequest = DeleteObjectRequest.builder()
+                .bucket(BUCKET_NAME)
+                .key(pictureId)
+                .build();
+
+        try {
+            this.s3Client.deleteObject(deleteObjectRequest);
+        } catch (NoSuchKeyException e) {
+            // already deleted
+            LOGGER.info("Already deleted");
+        } catch (Exception e) {
+            String message = String.format("Exception occurred while deleting metadata for pictureId: %s", pictureId);
+            LOGGER.error(message, e);
+            throw new CodeWhispererPictureException(message, e);
+        }
     }
 }
